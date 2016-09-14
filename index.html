@@ -1,0 +1,220 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Form Validation Example</title>
+    <meta name="description" content="An example of inline form validation.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Form Validation</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <p class="lead">Please note: This form is only for validation demonstration purposes. Do not enter real payment information; please use imaginary data.</p>
+        <form class="form-horizontal" role="form" action="thank-you.html" method="get" id="order-form">
+
+            <fieldset>
+                <legend>Your Information</legend>
+
+                <div class="form-group required">
+                    <label class="col-sm-3 control-label" for="your-name"><span class="glyphicon glyphicon-question-sign" title="Your first and last name."></span> Your Name</label>
+                    <div class="col-sm-9">
+                        <!-- fewer than 128 chars and no numbers:  required pattern="[a-zA-z ]{0,128}"     ^[a-zA-Z]+$ ]{0,128}-->
+                        <input type="text" class="form-control" name="your-name" id="your-name" placeholder="Your Name" required pattern="^[a-zA-Z ]{1,128}$" title="Enter first and lastname. Only letters are allowed.">
+                    </div>
+                </div>
+
+                <div class="form-group required">
+                    <label class="col-sm-3 control-label" for="your-address">Street Address</label>
+                    <div class="col-sm-9">
+                        <!-- must not be blank: required -->
+                        <input type="text" class="form-control" name="your-address" id="your-address" placeholder="Your Street Address" required title="Enter your street address.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="your-address2">Street Address (additional)</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="your-address2" id="your-address2" placeholder="Your Street Address (additional)">
+                    </div>
+                </div>
+                <div class="form-group required">
+
+                    <label class="col-sm-3 control-label" for="your-city">City</label>
+                    <div class="col-sm-9">
+                        <!-- must not be blank: required -->
+                        <input type="text" class="form-control" name="your-city" id="your-city" placeholder="Your City" required title="Enter your city.">
+                    </div>
+                </div>
+                <div class="form-group required">
+
+                    <label class="col-sm-3 control-label" for="your-state"><span class="glyphicon glyphicon-question-sign" title="Two-letter state abbreviation."></span> State</label>
+                    <div class="col-sm-9">
+                        <!-- must not be blank, exactly 2 chars, one of known state abbrs: required pattern="[A-Z]{2}" -->
+                        <input type="text" class="form-control" name="your-state" id="your-state" placeholder="Your State" required pattern="^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$" title="Enter two letter State abbreviation.">
+                    </div>
+                </div>
+                <div class="form-group required">
+
+                    <label class="col-sm-3 control-label" for="your-zip"><span class="glyphicon glyphicon-question-sign" title="US ZIP code only."></span> ZIP</label>
+                    <div class="col-sm-9">
+                        <!-- must not be blank, exactly 5 numbers: required pattern="[0-9]{5}" -->
+                        <input type="text" class="form-control" name="your-zip" id="your-zip" placeholder="Your ZIP Code" required pattern="^[0-9]{5}$" title="Enter five digit zip code: #####.">
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Payment</legend>
+                <div class="form-group required">
+
+                    <label class="col-sm-3 control-label" for="card-holder-name"><span class="glyphicon glyphicon-question-sign" title="First and last name shown on card."></span> Name on Card</label>
+                    <div class="col-sm-9">
+                        <!-- fewer than 128 chars and no numbers:  required pattern="[a-zA-z ]{0,128}" -->
+                        <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name" required pattern="^[a-zA-Z ]{1,128}$" title="Enter first and lastname. Only letters are allowed.">
+                    </div>
+                </div>
+                <div class="form-group required">
+
+                    <label class="col-sm-3 control-label" for="card-number"><span class="glyphicon glyphicon-question-sign" title="Test card number: 0000 0000 0000 0000"></span> Card Number</label>
+                    <div class="col-sm-9">
+                        <!-- not be blank, contain only number & spcs, 16 digits:  required pattern="[0-9]{4} *[0-9]{4} *[0-9]{4} *[0-9]{4}" -->
+                        <!-- WHEN TESTING THIS, USE THE UNIVERSAL TEST CARD NUMBER: 0000 0000 0000 0000 -->
+                        <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number" required pattern="[0-9]{4} *[0-9]{4} *[0-9]{4} *[0-9]{4}" title="Enter 16 digit card number: #### #### #### ####.">
+                    </div>
+                </div>
+                <div class="form-group required">
+
+                    <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <!-- not be blank:  required -->
+                                <select class="form-control col-sm-2" name="expiry-month" id="expiry-month" required title="Select expiration month.">
+                                    <option value="">Month</option>
+                                    <option value="01">Jan (01)</option>
+                                    <option value="02">Feb (02)</option>
+                                    <option value="03">Mar (03)</option>
+                                    <option value="04">Apr (04)</option>
+                                    <option value="05">May (05)</option>
+                                    <option value="06">June (06)</option>
+                                    <option value="07">July (07)</option>
+                                    <option value="08">Aug (08)</option>
+                                    <option value="09">Sep (09)</option>
+                                    <option value="10">Oct (10)</option>
+                                    <option value="11">Nov (11)</option>
+                                    <option value="12">Dec (12)</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3">
+                                <!-- not be blank:  required -->
+                                <select class="form-control" name="expiry-year" required title="Select expiration year.">
+                                    <option value="">Year</option>
+                                    <option value="16">2016</option>
+                                    <option value="17">2017</option>
+                                    <option value="18">2018</option>
+                                    <option value="19">2019</option>
+                                    <option value="20">2020</option>
+                                    <option value="21">2021</option>
+                                    <option value="22">2022</option>
+                                    <option value="23">2023</option>
+                                    <option value="24">2024</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group required">
+
+                    <label class="col-sm-3 control-label" for="cvv"><span class="glyphicon glyphicon-question-sign" title="Three-digit code from back of card."></span> Card CVV</label>
+                    <div class="col-sm-3">
+                        <!-- not be blank:  required  pattern="[0-9]{3}" -->
+                        <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code" required pattern="^[0-9]{3}$" title="Enter three number CVV code.">
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Additional Information</legend>
+
+                <div class="form-group required">
+                    <label class="col-sm-3 control-label" for="shipping-method">Shipping Method</label>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <!-- not be blank:  required -->
+                                <select class="form-control col-sm-2" name="shipping-method" id="shipping-method" required title="Select shipping method.">
+                                    <option value="">Select One</option>
+                                    <option value="Ground">Ground</option>
+                                    <option value="Air">Air</option>
+                                    <option value="Sea">Sea</option>
+                                    <option value="Rocket">Rocket</option>
+                                    <option value="Pigeon">Pigeon</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="comments">Special Instructions</label>
+                    <div class="col-sm-9">
+                        <!-- not be blank, <500 chars, contain any chars:  required maxlength="499" -->
+                        <textarea cols="80" rows="8" class="form-control" name="comments" id="comments" placeholder="Comments" required maxlength="499" title="Please enter a comment. Text size limit is 500 characters."></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-shopping-cart"></span> Check Out!</button>
+                    </div>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+    <div class="container">
+        <hr>
+
+        <footer>
+            <p>&copy; Jane Student 2015</p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
+    </script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/jquery.validate.min.js"></script>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
